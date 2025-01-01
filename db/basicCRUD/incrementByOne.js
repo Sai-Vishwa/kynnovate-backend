@@ -1,12 +1,11 @@
-const { FieldValue } = require("@google-cloud/firestore");
-const db = require("../connection");
+const {db,admin} = require("../connection");
 
 async function increment(collection, id, name, inc) {
   try {
     const docRef = db.collection(collection).doc(id);
 
     await docRef.update({
-      [name]: FieldValue.increment(inc),
+      [name]: admin.firestore.FieldValue.increment(inc),
     });
 
     return {msg:"success"}
