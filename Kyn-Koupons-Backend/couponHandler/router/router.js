@@ -13,15 +13,16 @@ const asyncHandler = (fn) => (req, res, next) => {
     Promise.resolve(fn(req, res, next)).catch(next);
   };
 
-  router.get('/', asyncHandler(async (req, res) => {
-    return res.status(200).send({
-      mssg: 'Coupon handler is working',
-      data: null,
-      error: null
-    });
-  }));
+//   router.get('/', asyncHandler(async (req, res) => {
+//     return res.status(200).send({
+//       mssg: 'Coupon handler is working',
+//       data: null,
+//       error: null
+//     });
+//   }));
 
   router.get('/', asyncHandler(async (req, res) => {
+    console.log("im getting called")
     await getAllCoupons(req,res);
   }));
 

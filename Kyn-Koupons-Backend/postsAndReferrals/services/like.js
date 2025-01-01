@@ -4,7 +4,7 @@ const { update } = require("../../db/basicCRUD/modifyoneormany");
 const { fetchone } = require("../../db/basicCRUD/showoneormany");
 const { admin } = require("../../db/connection");
 
-const unlike = async(req , res ) => {
+const like = async(req , res ) => {
     const {pid , uid} = req.body;
     try{
         const points  = await(fetchone("rewardSystem","type","likeSent","=="));
@@ -14,13 +14,14 @@ const unlike = async(req , res ) => {
         const pt2 = points2["data"][0]["points"];
 
 
-        const result = await(increment("user","points",uid,pt*-1));
+        const result = await(increment("user","points",uid,pt));
 
         const user = await(fetchById("posts",pid));
         const userRef = user.data().uid;
         userRef.update(await userRef.update({
-            points: admin.firestore.FieldValue.increment(pt2*-1),
+            points: admin.firestore.FieldValue.increment(pt2),
           }));
+          const final = await(addOne({postid:pid , uid:uid },"likes"))
           res.status(200).json({msg:"success"});
     }
     catch(error){
@@ -29,5 +30,5 @@ const unlike = async(req , res ) => {
     
 }
 module.exports = {
-    unlike
+    like
 }
