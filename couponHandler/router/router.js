@@ -21,11 +21,11 @@ const asyncHandler = (fn) => (req, res, next) => {
     });
   }));
 
-  router.post('/getAllCoupons', asyncHandler(async (req, res) => {
+  router.get('/getAllCoupons', asyncHandler(async (req, res) => {
     await getAllCoupons(req,res);
   }));
 
-  router.post('/getMyCoupons', asyncHandler(async (req, res) => {
+  router.get('/getMyCoupons', asyncHandler(async (req, res) => {
     await getCouponsOfUser(req,res);
   }));
 
@@ -37,11 +37,11 @@ const asyncHandler = (fn) => (req, res, next) => {
     await addCoupon(req,res);
   }));
 
-  router.post('/modifyCoupon', asyncHandler(async (req, res) => {
+  router.put('/modifyCoupon', asyncHandler(async (req, res) => {
     await modifyCoupon(req,res);
   }));
 
-  router.post('/deleteCoupon', asyncHandler(async (req, res) => {
+  router.delete('/deleteCoupon', asyncHandler(async (req, res) => {
     await deleteCoupon(req,res);
   }));
 
