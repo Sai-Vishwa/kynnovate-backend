@@ -1,5 +1,5 @@
 const db = require("../connection");
-async function deleteone(name,val,property,collection) {
+async function deleteOneOrMany(name,val,property,collection) {
     try {
       const snapshot = await db
         .collection(collection)
@@ -22,4 +22,4 @@ async function deleteone(name,val,property,collection) {
       return {msg:"error"}
     }
   }
-  module.exports = {deleteone}
+  module.exports = {deleteOneOrMany}

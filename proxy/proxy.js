@@ -27,6 +27,45 @@ const couponProxy = createProxyMiddleware({
   }
 });
 
+const bookingProxy = createProxyMiddleware({
+    target: 'http://localhost:3207/api/v1/bookings',
+    changeOrigin: true,
+    pathRewrite: {
+      '^/bookings': ''
+    },
+    on: {
+      proxyReq: (proxyReq,req, res) => setRequestBodydata(proxyReq, req, res),
+      proxyRes: (proxyRes, req, res) => responseHandle(proxyRes, req, res),
+      error: (err, req, res) => proxyError(err, req, res)
+    }
+  });
+
+  const postsAndReferralsProxy = createProxyMiddleware({
+    target: 'http://localhost:3208/api/v1/posts-referrals',
+    changeOrigin: true,
+    pathRewrite: {
+      '^/posts-referrals': ''
+    },
+    on: {
+      proxyReq: (proxyReq,req, res) => setRequestBodydata(proxyReq, req, res),
+      proxyRes: (proxyRes, req, res) => responseHandle(proxyRes, req, res),
+      error: (err, req, res) => proxyError(err, req, res)
+    }
+  });
+
+  const systemProxy = createProxyMiddleware({
+    target: 'http://localhost:3209/api/v1/system',
+    changeOrigin: true,
+    pathRewrite: {
+      '^/system': ''
+    },
+    on: {
+      proxyReq: (proxyReq,req, res) => setRequestBodydata(proxyReq, req, res),
+      proxyRes: (proxyRes, req, res) => responseHandle(proxyRes, req, res),
+      error: (err, req, res) => proxyError(err, req, res)
+    }
+  });
+
 module.exports = {
-  couponProxy
+  couponProxy , bookingProxy , postsAndReferralsProxy , systemProxy
 }

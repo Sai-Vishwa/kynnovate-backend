@@ -6,7 +6,7 @@ const db = new Firestore();
 
 const addCoupon = async(req,res) => {
     try {
-        const {couponType , criteriaName , offerType , offerVal , criteriaVal , partnerName ,total , validTill , validTillForUser} = req.body;
+        const {couponType , criteriaName , offerType , offerVal , criteriaVal , partnerName ,total , validTill , validTillForUser , name} = req.body;
         const result = await addOne({
                             couponType:couponType ,
                             criteriaType:`/criteria/${criteriaName}` ,
@@ -14,7 +14,8 @@ const addCoupon = async(req,res) => {
                             offerType: offerType,
                             offerVal: offerVal,
                             partnerInfo: partnerName,
-                            totalCoupons: total
+                            totalCoupons: total,
+                            name: name
                             },"allCoupons");
         if(result[msg]!="success"){
             res.status(400).json(result);
@@ -28,11 +29,12 @@ const addCoupon = async(req,res) => {
                     "validTillForUser" : Firestore.Timestamp.fromDate(new Date(validTillForUser))
                 })
             }
-            addMany
+            const result2 = await addMany("individualCoupons",data);
+            res.status(200).json(result2);   
         }
       } catch (error) {
         console.error("Error fetching data:", error);
-        return {msg:"error"}
+        res.status.json({msg:"error"})
       }
 }
 module.exports = {
