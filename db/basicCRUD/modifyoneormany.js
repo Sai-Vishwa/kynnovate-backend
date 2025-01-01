@@ -1,4 +1,4 @@
-const db = require("../connection");
+const {db} = require("../connection");
 async function update(name,val,data,property,collection,id,idflag) {
   if(idflag==false){
     try {

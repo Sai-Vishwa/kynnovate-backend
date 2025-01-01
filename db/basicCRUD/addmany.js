@@ -1,4 +1,4 @@
-const db = require("../connection");
+const {db} = require("../connection");
 async function addMany(collection,data) {
     try {
       const batch = db.batch(); 

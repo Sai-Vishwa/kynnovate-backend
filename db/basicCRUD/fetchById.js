@@ -1,5 +1,5 @@
 
-const db = require("../connection");
+const {db} = require("../connection");
 
 async function fetchById(collection, id) {
   try {

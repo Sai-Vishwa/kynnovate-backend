@@ -1,4 +1,4 @@
-const db = require("../connection");
+const {db} = require("../connection");
 async function deleteOneOrMany(name,val,property,collection) {
     try {
       const snapshot = await db

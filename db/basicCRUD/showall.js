@@ -1,8 +1,7 @@
-const db = require("../connection");
+const {db} = require("../connection");
 async function fetchAll(collection) {
     try {
       const snapshot = await db.collection(collection).get();
-  
       if (snapshot.empty) {
         return {msg:"empty"};
       }

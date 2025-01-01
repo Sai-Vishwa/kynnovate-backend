@@ -21,7 +21,7 @@ const asyncHandler = (fn) => (req, res, next) => {
     });
   }));
 
-  router.get('/getAllCoupons', asyncHandler(async (req, res) => {
+  router.get('/', asyncHandler(async (req, res) => {
     await getAllCoupons(req,res);
   }));
 
