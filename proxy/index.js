@@ -10,7 +10,6 @@ const { couponProxy, bookingProxy, systemProxy, postsAndReferralsProxy } = requi
 
 app.use(cors());
 app.use(express.json());
-app.use(limiter);
 app.use("/coupons",couponProxy);
 app.use("/bookings",bookingProxy);
 app.use("/system",systemProxy);
